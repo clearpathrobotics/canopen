@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-from setuptools import setup
+from setuptools import find_packages, setup
 import subprocess
 
 def get_version():
@@ -53,12 +53,16 @@ def enumerate_modules() -> list[str]:
     """
     modules = []
     dotpy = ".py"
+    excludes = {
+        "__init__.py"
+    }
     for root_dir, _, files in os.walk("canopen"):
         for f in files:
-            if f.endswith(dotpy):
+            if f.endswith(dotpy) and f not in excludes:
                 modules.append(
                     f"{root_dir.replace('/', '.')}.{f.rstrip(dotpy)}"
                 )
+    print(modules)
     return modules
 
 
@@ -70,6 +74,14 @@ setup(
     author="Christian Sandberg",
     author_email="christiansandberg@me.com",
     license="MIT",
+    include_package_data=True,
+    packages=find_packages(exclude=[
+        "*.tests",
+        "*.tests.*",
+        "tests.*",
+        "tests",
+    ]),
     py_modules=enumerate_modules(),
-    install_requires=[],
+    install_requires=[
+    ],
 )
