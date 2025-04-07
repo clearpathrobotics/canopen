@@ -74,13 +74,13 @@ setup(
     author="Christian Sandberg",
     author_email="christiansandberg@me.com",
     license="MIT",
-    include_package_data=True,
-    packages=find_packages(exclude=[
-        "*.tests",
-        "*.tests.*",
-        "tests.*",
-        "tests",
-    ]),
+    #include_package_data=True,
+    #packages=find_packages(exclude=[
+    #    "*.tests",
+    #    "*.tests.*",
+    #    "tests.*",
+    #    "tests",
+    #]),
     py_modules=enumerate_modules(),
     install_requires=[
     ],
