@@ -62,7 +62,6 @@ def enumerate_modules() -> list[str]:
                 modules.append(
                     f"{root_dir.replace('/', '.')}.{f.replace(dotpy, '')}"
                 )
-    print(modules)
     return modules
 
 
